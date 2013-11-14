@@ -105,7 +105,7 @@ $adminemail = '';
  *
  * @var array
  */
-$admin_users = array();
+$admin_users = array('newtron');
 
 /**
  * Default privacy setting for bookmarks.
@@ -125,7 +125,7 @@ $defaults['privacy'] = 0;
  * @var array
  */
 $menu2Tags = array(
-    'ux', 'a11y', 'anecdotal', 'survey', 'research'
+    'ux', 'a11y', 'anecdotal', 'survey', 'research', 'analytics'
 );
 
 /**
@@ -136,7 +136,7 @@ $menu2Tags = array(
  *
  * @var string
  */
-$theme = 'default';
+$theme = 'webdevdata';
 
 /**
  * Translation from locales/ folder.
@@ -203,5 +203,27 @@ $enableGoogleCustomSearch = true;
  * @link https://www.google.com/analytics/
  */
 $googleAnalyticsCode = null;
+
+/**
+ * FIXME: explain better
+ *
+ * Add a possible anchor (structured content) for bookmarks description field
+ * a simple value "xxx" (like "author") automatically associates xxx with
+ * [xxx][/xxx].
+ * A complex value "xxx"=>"yyy" (like "address") directly
+ * associates xxx with yyy.
+ *
+ * @var array
+ */
+$descriptionAnchors = array(
+	'abstract',
+    'ACMRef',
+    'altLink',
+    'author',
+    'BibTeX',
+    'content',
+    'date',
+    'EndNote'
+);
 
 ?>
