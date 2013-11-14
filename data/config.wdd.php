@@ -118,15 +118,22 @@ $admin_users = array('newtron');
 $defaults['privacy'] = 0;
 
 /**
+ * Ordering of sidebar blocks.
+ * See $menu2Tags for item of menu2
+ *
+ * @var array
+ * @see $menu2Tags
+ */
+$index_sidebar_blocks = array('popular');
+
+/**
  * List of tags used by menu2 sidebar box
  * Empty list = hidden menu2 box
  * menu2 displays linked tags just belonging to admins.
  *
  * @var array
  */
-$menu2Tags = array(
-    'ux', 'a11y', 'anecdotal', 'survey', 'research', 'analytics'
-);
+$menu2Tags = array();
 
 /**
  * The HTML theme to use. With themes, you can give your semanticscuttle

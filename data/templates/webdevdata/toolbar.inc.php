@@ -1,37 +1,76 @@
 <?php
-if ($userservice->isLoggedOn() && is_object($currentUser)) {
-    $cUserId = $userservice->getCurrentUserId();
-    $cUsername = $currentUser->getUsername();
+	/* Current user */
+	$currentUser = $currentUsername = null;
+	if ($userservice->isLoggedOn()) {
+		$currentUser = $userservice->getCurrentObjectUser();
+		$currentUsername = $currentUser->getUsername();
+	}
 ?>
 
-    <ul id="navigation">
-    	<li><a href="<?php echo createURL(''); ?>"><?php echo T_('Home'); ?></a></li>    
-        <li><a href="<?php echo createURL('bookmarks', $cUsername); ?>"><?php echo T_('Bookmarks'); ?></a></li>
-	<li><a href="<?php echo createURL('alltags', $cUsername); ?>"><?php echo T_('Tags'); ?></a></li>
-        <li><a href="<?php echo createURL('watchlist', $cUsername); ?>"><?php echo T_('Watchlist'); ?></a></li>
-	<li><a href="<?php echo $userservice->getProfileUrl($cUserId, $cUsername); ?>"><?php echo T_('Profile'); ?></a></li>
-        <li><a href="<?php echo createURL('bookmarks', $cUsername . '?action=add'); ?>"><?php echo T_('Add a Bookmark'); ?></a></li>
-        <li class="access"><?php echo $cUsername?><a href="<?php echo ROOT ?>?action=logout">(<?php echo T_('Log Out'); ?>)</a></li>
-        <li><a href="<?php echo createURL('about'); ?>"><?php echo T_('About'); ?></a></li>
-	<?php if($currentUser->isAdmin()): ?>
-        <li><a href="<?php echo createURL('admin', ''); ?>"><?php echo '['.T_('Admin').']'; ?></a></li>
-	<?php endif; ?>
+<nav role="navigation">
+	<ul id="navigation">
 
-    </ul>
+	<?php
+		if ($userservice->isLoggedOn() && is_object($currentUser)) {
+			$cUserId = $userservice->getCurrentUserId();
+			$cUsername = $currentUser->getUsername();
+	?>
 
-<?php
-} else {
-?>
-    <ul id="navigation">
-    	<li><a href="<?php echo createURL(''); ?>"><?php echo T_('Home'); ?></a></li>
+		<li><a href="<?php echo createURL(''); ?>"><?php echo T_('Home'); ?></a></li>
+		<li><a href="<?php echo createURL('bookmarks', $cUsername); ?>"><?php echo T_('Bookmarks'); ?></a></li>
+		<li><a href="<?php echo createURL('alltags', $cUsername); ?>"><?php echo T_('Tags'); ?></a></li>
+		<li><a href="<?php echo $userservice->getProfileUrl($cUserId, $cUsername); ?>"><?php echo T_('Profile'); ?></a></li>
+		<li><a href="<?php echo createURL('bookmarks', $cUsername . '?action=add'); ?>"><?php echo T_('Add a Bookmark'); ?></a></li>
+		<li class="access"><?php echo $cUsername?><a href="<?php echo ROOT ?>?action=logout">(<?php echo T_('Log Out'); ?>)</a></li>
+		<li><a href="<?php echo createURL('about'); ?>"><?php echo T_('About'); ?></a></li>
+		<?php if($currentUser->isAdmin()) : ?>
+		<li><a href="<?php echo createURL('admin', ''); ?>"><?php echo '['.T_('Admin').']'; ?></a></li>
+		<?php endif; ?>
+
+	<?php
+		} else {
+	?>
+
+	<li><a href="<?php echo createURL(''); ?>"><?php echo T_('Home'); ?></a></li>
 	<li><a href="<?php echo createURL('populartags'); ?>"><?php echo T_('Popular Tags'); ?></a></li>
-        <li><a href="<?php echo createURL('about'); ?>"><?php echo T_('About'); ?></a></li>
-        <li class="access"><a href="<?php echo createURL('login'); ?>"><?php echo T_('Log In'); ?></a></li>
-        <?php if ($GLOBALS['enableRegistration']) { ?>
-        <li class="access"><a href="<?php echo createURL('register'); ?>"><?php echo T_('Register'); ?></a></li>
-        <?php } ?>
-    </ul>
+	<li><a href="<?php echo createURL('about'); ?>"><?php echo T_('About'); ?></a></li>
+	<li class="access"><a href="<?php echo createURL('login'); ?>"><?php echo T_('Log In'); ?></a></li>
+	<?php if ($GLOBALS['enableRegistration']) { ?>
+	<li class="access"><a href="<?php echo createURL('register'); ?>"><?php echo T_('Register'); ?></a></li>
+	<?php } ?>
 
 <?php
-}
+	}
 ?>
+
+	</ul>
+
+	<form id="search" action="<?php echo createURL('search'); ?>" method="post">
+		<label for="search-terms">Search</label>
+		<input type="search" id="search-terms" name="terms" size="30" value="<?php echo filter($terms); ?>" />
+
+		<label for="search-range">in</label>
+		<select id="search-range" name="range">
+			<option value="all" selected><?php echo T_('All bookmarks'); ?></option>
+			<?php
+				if ($range == 'user' && $user!=$currentUsername) {
+			?>
+
+			<option value="<?php echo $user ?>"><?php echo T_("This user’s bookmarks"); ?></option>
+
+			<?php
+				}
+				if ($userservice->isLoggedOn()) {
+			?>
+
+			<option value="<?php echo $currentUsername; ?>"><?php echo T_('My bookmarks'); ?></option>
+			<option value="watchlist"><?php echo T_('My watchlist'); ?></option>
+
+			<?php
+				}
+			?>
+		</select>
+
+		<input type="submit" value="Search" />
+	</form>
+</nav>
