@@ -10,12 +10,5 @@ data/*.sql
 doc
 scripts
 src
-www/*.php
-www/.htaccess
-www/ajax
-www/api
-www/gsearch
-www/js
-www/player
 www/themes/default
 www/themes/testdummy
