@@ -21,9 +21,6 @@
 				}
 			}
 		?>
-
-		<script type="text/javascript" src="<?php echo ROOT_JS; ?>jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="<?php echo ROOT; ?>jsScuttle.php"></script>
 	</head>
 
 	<body>

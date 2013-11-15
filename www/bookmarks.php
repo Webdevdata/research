@@ -172,7 +172,7 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
 
 if (GET_ACTION == "add") {
 	// If the bookmark exists already, edit the original
-	if ($bookmarkservice->bookmarkExists(stripslashes(GET_ADDRESS), $currentUserID)) {		
+	if ($bookmarkservice->bookmarkExists(stripslashes(GET_ADDRESS), $currentUserID)) {
 		$bookmark =& $bookmarkservice->getBookmarks(0, NULL, $currentUserID, NULL, NULL, NULL, NULL, NULL, NULL, $bookmarkservice->getHash(stripslashes(GET_ADDRESS)));
 		$popup = (GET_POPUP!='') ? '?popup=1' : '';
 		header('Location: '. createURL('edit', $bookmark['bookmarks'][0]['bId'] . $popup));
@@ -207,10 +207,10 @@ if ($templatename == 'editbookmark.tpl') {
                 'bDescription' => stripslashes(GET_DESCRIPTION),
                 'bPrivateNote' => stripslashes(GET_PRIVATENOTE),
                 'tags' => (GET_TAGS ? explode(',', stripslashes(GET_TAGS)) : array()),
-                'bStatus' => $GLOBALS['defaults']['privacy'] 
+                'bStatus' => $GLOBALS['defaults']['privacy']
 			 );
 			}
-				
+
 		}
 		$title = T_('Add a Bookmark');
 		$tplVars['referrer'] = '';;
@@ -226,28 +226,16 @@ if ($templatename == 'editbookmark.tpl') {
 	}
 } else if ($user && GET_POPUP == '') {
 
-	$tplVars['sidebar_blocks'] = array('watchstatus');
-
 	if (!$cat) { //user page without tags
         $rssTitle = "My Bookmarks";
 		$cat = NULL;
 		$tplVars['currenttag'] = NULL;
-		//$tplVars['sidebar_blocks'][] = 'menu2';
-		$tplVars['sidebar_blocks'][] = 'linked';
-		$tplVars['sidebar_blocks'][] = 'popular';
 	} else { //pages with tags
         $rssTitle = "Tags" . $catTitle;
 		$rssCat = '/'. filter($cat, 'url');
 		$tplVars['currenttag'] = $cat;
-		$tplVars['sidebar_blocks'][] = 'tagactions';
-		//$tplVars['sidebar_blocks'][] = 'menu2';
-		$tplVars['sidebar_blocks'][] = 'linked';
-		$tplVars['sidebar_blocks'][] = 'related';
-		/*$tplVars['sidebar_blocks'][] = 'menu';*/
 	}
-	$tplVars['sidebar_blocks'][] = 'menu2';
 	$tplVars['popCount'] = 30;
-	//$tplVars['sidebar_blocks'][] = 'popular';
 
 	$tplVars['userid'] = $userid;
 	$tplVars['userinfo'] =& $userinfo;
@@ -314,6 +302,7 @@ $tplVars['summarizeLinkedTags'] = true;
 $tplVars['pageName'] = PAGE_BOOKMARKS;
 
 
+$tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 $templateservice->loadTemplate($templatename, $tplVars);
 
 if ($usecache && $endcache) {

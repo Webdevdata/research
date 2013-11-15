@@ -31,7 +31,7 @@ $tagstatservice = SemanticScuttle_Service_Factory::get('TagStat');
 // Header variables
 $tplVars['subtitle'] = T_('Manage users');
 $tplVars['loadjs'] = true;
-$tplVars['sidebar_blocks'] = array('users' );
+$tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 $tplVars['error'] = '';
 $tplVars['msg'] = '';
 
@@ -62,7 +62,7 @@ if ($action
 				$bookmark2tagservice->deleteTagsForUser($uId);
 				$commondescriptionservice->deleteDescriptionsForUser($uId);
 				$searchhistoryservice->deleteSearchHistoryForUser($uId);
-				$tagstatservice->deleteTagStatForUser($uId);				
+				$tagstatservice->deleteTagStatForUser($uId);
 				// XXX: don't delete bookmarks before tags, else tags can't be deleted !!!
 				$bookmarkservice->deleteBookmarksForUser($uId);
 
@@ -73,7 +73,7 @@ if ($action
 			$bookmarks =& $bookmarkservice->getBookmarks(0, NULL, NULL, NULL, NULL, getSortOrder());
 			foreach($bookmarks['bookmarks'] as $bookmark) {
 				if(!checkUrl($bookmark['bAddress'])) {
-					$tplVars['error'].= T_('Problem with ').$bookmark['bAddress'].' ('. $bookmark['username'] .')<br/>';  
+					$tplVars['error'].= T_('Problem with ').$bookmark['bAddress'].' ('. $bookmark['username'] .')<br/>';
 				}
 			}
 			break;

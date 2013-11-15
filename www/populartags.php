@@ -70,7 +70,7 @@ if (isset($userid)) {
 	$tplVars['cat_url'] = createURL('tags', '%2$s');
 }
 
-$tplVars['sidebar_blocks'] = array('linked');
+$tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 $tplVars['pagetitle'] = $pagetitle;
 $tplVars['subtitle'] = $pagetitle;
 $tplVars['loadjs'] = true;

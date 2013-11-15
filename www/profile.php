@@ -45,7 +45,7 @@ isset($_SESSION['token_stamp']) ? define('SESSION_TOKENSTAMP', $_SESSION['token_
 @list($url, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 
 if ($user) {
-	
+
 	if (is_int($user)) {
 		$userid = intval($user);
 	} else {
@@ -186,6 +186,7 @@ if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
     }
 }
 
+$tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 $tplVars['objectUser'] = $userinfo;
 $templateservice->loadTemplate($templatename, $tplVars);
 ?>

@@ -45,7 +45,7 @@ $tplVars['pagetitle'] = T_('Edit Bookmark');
 $tplVars['subtitle'] = T_('Edit Bookmark');
 $tplVars['loadjs'] = true;
 
-list ($url, $bookmark) = explode('/', $_SERVER['PATH_INFO']);	
+list ($url, $bookmark) = explode('/', $_SERVER['PATH_INFO']);
 
 if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
     $tplVars['error'] = sprintf(T_('Bookmark with id %s not was not found'), $bookmark);
@@ -58,9 +58,9 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
         $templateservice->loadTemplate('error.500.tpl', $tplVars);
         exit();
     } else if (POST_SUBMITTED != '') {
-    
-    	
-    
+
+
+
         if (!POST_TITLE || !POST_ADDRESS) {
             $tplVars['error'] = T_('Your bookmark must have a title and an address');
         } else {
@@ -71,8 +71,8 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
             $description = trim(POST_DESCRIPTION);
             $privateNote = trim(POST_PRIVATENOTE);
             $status = intval(POST_STATUS);
-            $tags = trim(POST_TAGS);            
-            
+            $tags = trim(POST_TAGS);
+
             if (!$bookmarkservice->updateBookmark($bId, $address, $title, $description, $privateNote, $status, $tags)) {
                 $tplvars['error'] = T_('Error while saving your bookmark');
             } else {
@@ -92,7 +92,7 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
         if (POST_DELETE != '') {
             // Delete bookmark
             if ($bookmarkservice->deleteBookmark($bookmark)) {
-            	if (POST_POPUP != '') {            		
+            	if (POST_POPUP != '') {
             		$tplVars['msg'] = '<script type="text/javascript">window.close();</script>';
             	} elseif (POST_REFERRER != '') {
                     header('Location: '. POST_REFERRER);
@@ -113,6 +113,7 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
     $tplVars['btnsubmit'] = T_('Save Changes');
     $tplVars['showdelete'] = true;
     $tplVars['referrer'] = '';
+    $tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
     if (isset($_SERVER['HTTP_REFERER'])) {
         $tplVars['referrer'] = $_SERVER['HTTP_REFERER'];
     }

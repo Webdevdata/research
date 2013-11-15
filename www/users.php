@@ -46,7 +46,7 @@ if ($usecache) {
 $tplVars['pagetitle'] = $pagetitle;
 $tplVars['loadjs'] = true;
 
-$tplVars['sidebar_blocks'] = array('recent', 'popular');
+$tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 $tplVars['subtitle'] = filter($pagetitle);
 
 $tplVars['users'] =& $userservice->getUsers();

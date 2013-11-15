@@ -11,10 +11,8 @@
 	// sort settings
 	$titleArrow  = '';
 	$dateArrow   = '';
-	$votingArrow = '';
 	$dateSort    = 'date_desc';
 	$titleSort   = 'title_asc';
-	$votingSort  = 'voting_desc';
 
 	switch(getSortOrder()) {
 	case 'date_asc':
@@ -30,16 +28,6 @@
 	case 'title_desc':
 		$titleArrow = ' ↓';
 		$titleSort  = 'title_asc';
-		break;
-
-	case 'voting_asc':
-		$votingArrow = ' ↑';
-		$votingSort  = 'voting_desc';
-		break;
-
-	case 'voting_desc':
-		$votingArrow = ' ↓';
-		$votingSort  = 'voting_asc';
 		break;
 
 	case 'date_desc':
@@ -108,9 +96,6 @@
 			<ul>
 				<li><a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date") . $dateArrow; ?></a></li>
 				<li><a href="?sort=<?php echo $titleSort ?>"><?php echo T_("Title") . $titleArrow; ?></a></li>
-				<?php if ($GLOBALS['enableVoting']) { ?>
-				<li><a href="?sort=<?php echo $votingSort ?>"><?php echo T_("Voting") . $votingArrow; ?></a></li>
-				<?php } ?>
 			</ul>
 		</div>
 

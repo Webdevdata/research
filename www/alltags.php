@@ -57,7 +57,7 @@ if (isset($user) && $user != '') {
 		$templateservice->loadTemplate('error.404.tpl', $tplVars);
 		exit();
 	}
-	
+
 	$pagetitle .= ': '. ucfirst($user);
 } else {
 	$userid = NULL;
@@ -73,7 +73,7 @@ if (isset($userid)) {
 	$tplVars['cat_url'] = createURL('tags', '%2$s');
 }
 
-$tplVars['sidebar_blocks'] = array('linked');
+$tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 $tplVars['userid'] = $userid;
 $tplVars['loadjs'] = true;
 

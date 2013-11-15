@@ -48,7 +48,7 @@ if (POST_SUBMITTED != '') {
     $posteduser = trim(utf8_strtolower(POST_USERNAME));
 
     // Check if form is incomplete
-    if (!($posteduser) || POST_PASS == '' || POST_MAIL == '') {    	
+    if (!($posteduser) || POST_PASS == '' || POST_MAIL == '') {
         $tplVars['error'] = T_('You <em>must</em> enter a username, password and e-mail address.');
 
     // Check if username is reserved
@@ -58,11 +58,11 @@ if (POST_SUBMITTED != '') {
     // Check if username already exists
     } elseif ($userservice->getUserByUsername($posteduser)) {
         $tplVars['error'] = T_('This username already exists, please make another choice.');
-        
+
     // Check if username is valid (length, authorized characters)
     } elseif (!$userservice->isValidUsername($posteduser)) {
-        $tplVars['error'] = T_('This username is not valid (too short, too long, forbidden characters...), please make another choice.');        
-    
+        $tplVars['error'] = T_('This username is not valid (too short, too long, forbidden characters...), please make another choice.');
+
     // Check if e-mail address is valid
     } elseif (!$userservice->isValidEmail(POST_MAIL)) {
         $tplVars['error'] = T_('E-mail address is not valid. Please try again.');
@@ -98,5 +98,6 @@ $tplVars['antispamQuestion'] = $GLOBALS['antispamQuestion'];
 $tplVars['loadjs']      = true;
 $tplVars['subtitle']    = T_('Register');
 $tplVars['formaction']  = createURL('register');
+$tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 $templateservice->loadTemplate('register.tpl', $tplVars);
 ?>

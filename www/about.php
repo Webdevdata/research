@@ -22,6 +22,7 @@ require_once 'www-header.php';
 
 $tplVars['pagetitle'] = T_('About');
 $tplVars['subtitle'] = T_('About');
+$tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 
 $templateservice->loadTemplate('about.tpl', $tplVars);
 ?>

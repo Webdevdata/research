@@ -74,5 +74,6 @@ if (POST_SUBMITTED != '') {
 $templatename = 'password.tpl';
 $tplVars['subtitle'] = T_('Forgotten Password');
 $tplVars['formaction']  = createURL('password');
+$tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 $templateservice->loadTemplate($templatename, $tplVars);
 ?>
