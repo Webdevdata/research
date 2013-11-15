@@ -1,33 +1,24 @@
-<?php
-$this->includeTemplate($GLOBALS['top_include']);
+<?php $this->includeTemplate($GLOBALS['top_include']); ?>
 
-if ($users && count($users) > 0) {
-?>
-
-<!--p id="sort">
-    <?php echo T_("Sort by:"); ?>
-    <a href="?sort=alphabet_asc"><?php echo T_("Alphabet"); ?></a><span> / </span>
-    <a href="?sort=popularity_asc"><?php echo T_("Popularity"); ?></a>
-</p-->
-<p class="users">
-<ul>
-<?php
-$contents = '<';
-foreach ($users as $row) {
-    echo  '<li><strong>'
-        . SemanticScuttle_Model_UserArray::getName($row) . '</strong>'
-        . ' (<a href="' . createURL('profile', $row['username']) . '">'
-        . T_('profile') . '</a> '
-        . T_('created in') . ' '
-        . date('M Y', strtotime($row['uDatetime'])) . ')'
-        . ' : <a href="' . createURL('bookmarks', $row['username']).'">'
-        . T_('bookmarks') . '</a></li>';
-}
-?>
-</ul>
-</p>
+<main role="main" id="main">
+	<ul>
+		<?php
+			foreach ($users as $row) {
+				echo  '
+					<li>
+						<b>' . SemanticScuttle_Model_UserArray::getName($row) . '</b>
+						<ul>
+							<li><a href="' . createURL('profile', $row['username']) . '">profile</a></li>
+							<li><a href="' . createURL('bookmarks', $row['username']) . '">bookmarks</a></li>
+						</ul>
+					</li>
+				';
+			}
+		?>
+	</ul>
+</main>
 
 <?php
-}
-$this->includeTemplate($GLOBALS['bottom_include']);
+	$this->includeTemplate('sidebar.tpl');
+	$this->includeTemplate($GLOBALS['bottom_include']);
 ?>

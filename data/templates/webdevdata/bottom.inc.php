@@ -6,6 +6,8 @@
 				<li><a href="https://github.com/webdevdata/research">research.webdevdata.org on GitHub</a></li>
 			</ul>
 
+			<?php $this->includeTemplate('bookmarklet.inc.php'); ?>
+
 			<?php
 				echo $GLOBALS['footerMessage'] . ' <a href="' . createURL('about') . '">' . T_('About') . '</a> - ' . T_("Propulsed by ") . '<a rel="external" href="https://sourceforge.net/projects/semanticscuttle/">SemanticScuttle</a>';
 

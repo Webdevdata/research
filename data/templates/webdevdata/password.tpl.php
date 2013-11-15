@@ -1,26 +1,19 @@
-<?php
-$this->includeTemplate($GLOBALS['top_include']);
-?>
+<?php $this->includeTemplate($GLOBALS['top_include']); ?>
 
-<p><?php echo sprintf(T_('If you have forgotten your password, %s can generate a new one. Enter the username and e-mail address of your account into the form below and we will e-mail your new password to you.'), $GLOBALS['sitename']); ?></p>
+<main role="main" id="main">
+	<p>If you have forgotten your password, we can generate a new one. Enter the username and email address of your account into the form below and we will email your new password to you.</p>
+	<form action="<?php echo $formaction; ?>" method="post">
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username" class="required" />
 
-<form action="<?php echo $formaction; ?>" method="post">
-    <table>
-    <tr>
-        <th align="left"><label for="username"><?php echo T_('Username'); ?></label></th>
-        <td><input type="text" id="username" name="username" size="20" class="required" /></td>
-    </tr>
-    <tr>
-        <th align="left"><label for="email"><?php echo T_('E-mail'); ?></label></th>
-        <td><input type="text" id="email" name="email" size="40" class="required" /></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td><input type="submit" name="submitted" value="<?php echo T_('Generate Password'); ?>" /></td>
-    </tr>
-    </table>
-</form>
+		<label for="email">Email</label>
+		<input type="email" id="email" name="email" class="required" />
+
+		<input type="submit" name="submitted" value="Generate password" />
+	</form>
+</main>
 
 <?php
-$this->includeTemplate($GLOBALS['bottom_include']);
+	$this->includeTemplate('sidebar.tpl');
+	$this->includeTemplate($GLOBALS['bottom_include']);
 ?>

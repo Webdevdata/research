@@ -1,31 +1,17 @@
-<?php
-$this->includeTemplate($GLOBALS['top_include']);
-?>
+<?php $this->includeTemplate($GLOBALS['top_include']); ?>
+
+<main role="main" id="main">
+	<ol class="tags">
+		<?php
+			foreach ($tags as $row) {
+				$entries = T_ngettext('bookmark', 'bookmarks', $row['bCount']);
+				echo '<li class="popular-' . $row['size'] . '"><a href="' . sprintf($cat_url, $user, filter($row['tag'], 'url')) . '" title="' . $row['bCount'] . ' ' . $entries . '" rel="tag">' . filter($row['tag']) . '</a></li>';
+			}
+		?>
+	</ol>
+</main>
 
 <?php
-if ($tags && count($tags) > 0) {
-?>
-
-<p id="sort">
-    <?php echo T_("Sort by:"); ?>
-    <a href="?sort=alphabet_asc"><?php echo T_("Alphabet"); ?></a><span> / </span>
-    <a href="?sort=popularity_asc"><?php echo T_("Popularity"); ?></a>
-</p>
-<p class="tags">
-
-<?php
-$contents = '';
-foreach ($tags as $row) {
-    $entries = T_ngettext('bookmark', 'bookmarks', $row['bCount']);
-    $contents .= '<a href="'. sprintf($cat_url, $user, filter($row['tag'], 'url')) .'" title="'. $row['bCount'] .' '. $entries .'" rel="tag" style="font-size:'. $row['size'] .'">'. filter($row['tag']) .'</a> ';
-}
-echo $contents ."\n";
-?>
-
-</p>
-
-<?php
-}
-$this->includeTemplate('sidebar.tpl');
-$this->includeTemplate($GLOBALS['bottom_include']);
+	$this->includeTemplate('sidebar.tpl');
+	$this->includeTemplate($GLOBALS['bottom_include']);
 ?>

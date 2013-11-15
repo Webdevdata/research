@@ -2,7 +2,6 @@
 	// Service creation: only useful services are created
 	$bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
 	$tagservice      = SemanticScuttle_Service_Factory::get('Tag');
-	$cdservice       = SemanticScuttle_Service_Factory::get('CommonDescription');
 
 	// page settings
 	$pageName   = isset($pageName) ? $pageName : '';
@@ -101,50 +100,6 @@
 <main role="main" id="main">
 	<aside class="controls">
 		<h3>Controls</h3>
-
-	<?php
-		// common tag description
-		if (($currenttag != '' && $GLOBALS['enableCommonTagDescription']) || (isset($hash) && $GLOBALS['enableCommonBookmarkDescription'])) {
-			echo '<div class="commondescription">';
-			$cDescription = '';
-			if ($currenttag != '' && $cdservice->getLastTagDescription($currenttag)) {
-				$cDescription = $cdservice->getLastTagDescription($currenttag);
-				echo nl2br(filter($cDescription['cdDescription']));
-			} elseif (isset($hash) && $cdservice->getLastBookmarkDescription($hash)) {
-				$cDescription = $cdservice->getLastBookmarkDescription($hash);
-				echo nl2br(filter($cDescription['cdTitle'])). "<br />";
-				echo nl2br(filter($cDescription['cdDescription'])). "<br />";
-			}
-
-			//common tag description edit
-			if ($userservice->isLoggedOn()) {
-				if ($currenttag != '' && ($GLOBALS['enableCommonTagDescriptionEditedByAll'] || $currentUser->isAdmin())) {
-					echo ' <a href="' . createURL('tagcommondescriptionedit', $currenttag) . '">Edit the common description of this tag</a>';
-				} elseif (isset($hash)) {
-					echo ' (<a href="' . createURL('bookmarkcommondescriptionedit', $hash) . '">Edit the common description of this bookmark</a>';
-				}
-			}
-			echo '</div>';
-		}
-
-		// personal tag description
-		if ($currenttag != '' && $user != '') {
-			$userObject = $userservice->getUserByUsername($user);
-			if ($tagservice->getDescription($currenttag, $userObject['uId'])) {
-				$pDescription = $tagservice->getDescription($currenttag, $userObject['uId']);
-				echo '<div class="commondescription">' . nl2br(filter($pDescription['tDescription']));
-
-				//personal tag description edit
-				if ($userservice->isLoggedOn()) {
-					if ($currenttag != '') {
-						echo ' <a href="' . createURL('tagedit', $currenttag).'">Edit your personal description of this tag</a>';
-					}
-				}
-
-				echo '</div>';
-			}
-		}
-	?>
 
 		<div id="sort">
 			<div id="sort-num"><?php echo $total; ?> bookmark(s)</div>

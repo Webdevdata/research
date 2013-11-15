@@ -1,49 +1,31 @@
-<?php
-$this->includeTemplate($GLOBALS['top_include']);
-?>
+<?php $this->includeTemplate($GLOBALS['top_include']); ?>
 
-<script type="text/javascript">
-window.onload = function() {
-    document.getElementById("username").focus();
-}
-</script>
+<main role="main" id="main">
+	<p>Sign up here to create an account. All the information requested below is required.</p>
+	<form action="<?php echo $formaction; ?>" method="post">
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username" class="required" />
 
-<p><?php echo sprintf(T_('Sign up here to create a free %s account. All the information requested below is required'), $GLOBALS['sitename']); ?>.</p>
+		<div class="tip">
+			<p>Username must be at least 5 characters, alphanumeric.</p>
+		</div>
 
-<form action="<?php echo $formaction; ?>" method="post">
-<table>
-<tr>
-    <th align="left"><label for="username"><?php echo T_('Username'); ?></label></th>
-    <td><input type="text" id="username" name="username" size="20" class="required" onkeyup="isAvailable(this, '')" /> </td>
-    <td id="availability"><?php echo '←'.T_(' at least 5 characters, alphanumeric (no spaces, no dots or other special ones)') ?></td>
-</tr>
-<tr>
-    <th align="left"><label for="password"><?php echo T_('Password'); ?></label></th>
-    <td><input type="password" id="password" name="password" size="20" class="required" /></td>
-    <td></td>
-</tr>
-<tr>
-    <th align="left"><label for="email"><?php echo T_('E-mail'); ?></label></th>
-    <td><input type="text" id="email" name="email" size="40" class="required" value="<?php echo htmlspecialchars(POST_MAIL); ?>" /></td>
-    <td><?php echo '←'.T_(' to send you your password if you forget it')?></td>
-</tr>
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" class="required" />
 
-<?php if(strlen($antispamQuestion)>0) {?>
-<tr>
-    <th align="left"><label for="antispamAnswer"><?php echo T_('Antispam question'); ?></label></th>
-    <td><input type="text" id="antispamAnswer" name="antispamAnswer" size="40" class="required" value="<?php echo $antispamQuestion; ?>" onfocus="if (this.value == '<?php echo $antispamQuestion; ?>') this.value = '';" onblur="if (this.value == '') this.value = '<?php echo $antispamQuestion; ?>';"/></td>
-    <td></td>
-</tr>
-<?php } ?>
+		<label for="email">Email</label>
+		<input type="email" id="email" name="email" class="required" value="<?php echo htmlspecialchars(POST_MAIL); ?>" />
 
-<tr>
-    <td></td>
-    <td><input type="submit" name="submitted" value="<?php echo T_('Register'); ?>" /></td>
-    <td></td>
-</tr>
-</table>
-</form>
+		<?php if (strlen($antispamQuestion) > 0) { ?>
+		<label for="antispamAnswer"><?php echo $antispamQuestion; ?></label>
+		<input type="text" id="antispamAnswer" name="antispamAnswer" class="required" />
+		<?php } ?>
+
+		<input type="submit" name="submitted" value="Register" />
+	</form>
+</main>
 
 <?php
-$this->includeTemplate($GLOBALS['bottom_include']);
+	$this->includeTemplate('sidebar.tpl');
+	$this->includeTemplate($GLOBALS['bottom_include']);
 ?>
