@@ -1,4 +1,4 @@
-<aside id="sidebar">
+<aside id="sidebar" class="sidebar">
 	<?php
 		if (isset($sidebar_blocks) && count($sidebar_blocks)) {
 		    $size = count($sidebar_blocks);

@@ -1,0 +1,329 @@
+header, footer, aside.sidebar, input, textarea, select, button {
+	max-width: 100%;
+
+	font-family: 'Open Sans', Myriad, Calibri, sans-serif;
+	font-size: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;
+
+	font-family: 'Open Sans', Myriad, Calibri, sans-serif;
+	font-weight: bold;
+}
+
+body {
+	background-color: #ece4d8;
+
+	margin: 0;
+	padding: 0;
+
+	color: #544943;
+	font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+	font-size: 0.9em;
+	line-height: 1.2;
+}
+
+a {
+	color: #417090;
+	text-decoration: none;
+}
+
+a:focus,
+a:hover {
+	color: #7c98ab;
+	text-decoration: underline;
+}
+
+a:active {
+	color: #496578;
+}
+
+a img {
+	border: 0;
+}
+
+
+
+
+
+header {
+	padding: 1em;
+
+	background-color: #417090;
+
+	color: #f1f1f1;
+	text-align: center;
+}
+
+header ul {
+	margin: 1em 0;
+	padding: 0;
+
+	list-style-type: none;
+}
+
+header li {
+	display: inline-block;
+
+	margin: 0 0.5em 0 0;
+	padding: 0;
+}
+
+header li:first-child {
+	margin-left: 0;
+}
+
+header li:last-child {
+	margin-right: 0;
+}
+
+header a {
+	color: #f1f1f1;
+}
+
+
+
+
+h1 {
+	text-transform: uppercase;
+	word-wrap: break-word;
+}
+
+h2 {
+	margin: 1em 0 0 0;
+	padding: 0 0.75em;
+
+	font-size: 1.5em;
+	text-align: center;
+}
+
+
+
+
+
+
+main {
+	padding: 1em;
+}
+
+main aside {
+	padding: 0.5em;
+
+	border: 2px dashed #808080;
+
+	text-align: center;
+}
+
+main aside div,
+main aside ul,
+main aside li {
+	display: inline-block;
+
+	margin: 0;
+	padding: 0;
+}
+
+main aside #sort div + div::after {
+	content: ': ';
+}
+
+main aside #sort + div {
+	display: block;
+}
+
+ol.bookmarks {
+	margin: 1em 0;
+	padding: 0;
+
+	list-style-type: none;
+}
+
+ol.bookmarks li {
+	margin: 1em 0;
+	padding: 0.5em;
+
+	background-color: #f6f2ec;
+}
+
+ol.bookmarks > li > a {
+	display: block;
+
+	margin: -0.5em -0.5em 1em -0.5em;
+	padding: 0.5em;
+
+	background-color: #7c334f;
+
+	color: #f1f1f1;
+	font-family: 'Open Sans', Myriad, Calibri, sans-serif;
+	font-weight: bold;
+}
+
+ol.bookmarks div.description {
+	word-wrap: break-word;
+}
+
+ol.bookmarks div.meta {
+	margin: 1em 0 0 0;
+	padding: 0.5em;
+
+	border-top: 1px solid #808080;
+
+	font-size: 0.9em;
+}
+
+ol.bookmarks div.meta:before,
+ol.bookmarks div.meta:after {
+	content: '';
+	display: table;
+}
+
+ol.bookmarks div.meta:after {
+	clear: both;
+}
+
+ol.bookmarks div.meta ul {
+	display: inline;
+
+	margin: 0;
+	padding: 0;
+
+	list-style-type: none;
+	text-transform: none;
+}
+
+ol.bookmarks div.meta li {
+	display: inline-block;
+
+	margin: 0 0.5em 0 0;
+	padding: 0;
+}
+
+ol.bookmarks div.meta div {
+	margin: 0.5em;
+}
+
+ol.bookmarks div.meta button {
+	display: inline;
+
+	width: auto;
+	height: auto;
+	margin: 0;
+	padding: 0;
+
+	border: none;
+
+	background: none;
+
+	font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+	text-align: left;
+
+	color: #417090;
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: normal;
+}
+
+ol.bookmarks div.meta button:focus,
+ol.bookmarks div.meta button:hover {
+	color: #7c98ab;
+	text-decoration: underline;
+}
+
+ol.bookmarks div.meta button:active {
+	color: #496578;
+}
+
+ol.bookmarks small {
+	font-size: 1em;
+}
+
+.anchorBookmark {
+	font-weight: bold;
+}
+
+main label, main input, main select, main textarea {
+	display: block;
+
+	width: 100%;
+	margin: 0 0 1em 0;
+
+	font-family: 'Open Sans', Myriad, Calibri, sans-serif;
+}
+
+main input[type=submit] {
+	width: auto;
+}
+
+main label {
+	margin: 0.25em 0;
+
+	font-weight: bold;
+}
+
+
+
+
+.sidebar {
+	margin: 1em;
+	padding: 0.5em;
+
+	background-color: #a0b8c8;
+}
+
+.sidebar h2 {
+	margin: 0;
+	padding: 0;
+}
+
+.sidebar ul.tags {
+	margin: 0;
+	padding: 0;
+
+	list-style-type: none;
+}
+
+.sidebar ul.tags li {
+	display: inline-block;
+
+	margin: 0 0.5em 0 0;
+}
+
+
+
+
+
+footer {
+	padding: 1em;
+
+	background-color: #417090;
+
+	color: #f1f1f1;
+	text-align: center;
+}
+
+footer ul {
+	margin: 0;
+	padding: 0;
+
+	list-style-type: none;
+}
+
+footer li {
+	display: inline-block;
+
+	margin: 0 1em 0 0;
+	padding: 0;
+}
+
+footer li:first-child {
+	margin-left: 0;
+}
+
+footer li:last-child {
+	margin-right: 0;
+}
+
+footer a {
+	color: #f1f1f1;
+}

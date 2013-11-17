@@ -87,14 +87,12 @@
 
 <main role="main" id="main">
 	<aside class="controls">
-		<h3>Controls</h3>
-
 		<div id="sort">
 			<div id="sort-num"><?php echo $total; ?> bookmark(s)</div>
 			<div id="sort-by">Sort by</div>
 
 			<ul>
-				<li><a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date") . $dateArrow; ?></a></li>
+				<li><a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date added") . $dateArrow; ?></a></li>
 				<li><a href="?sort=<?php echo $titleSort ?>"><?php echo T_("Title") . $titleArrow; ?></a></li>
 			</ul>
 		</div>
@@ -118,7 +116,7 @@
 		?>
 	</aside>
 
-	<ol <?php echo ($start > 0 ? 'start="'. ++$start .'"' : ''); ?> id="bookmarks">
+	<ol <?php echo ($start > 0 ? 'start="'. ++$start .'"' : ''); ?> id="bookmarks" class="bookmarks">
 
 		<?php
 
@@ -168,7 +166,7 @@
 			<a href="<?php echo htmlspecialchars($address) . '"' . $rel;?> class="taggedlink"><?php echo filter($row['bTitle']); ?></a>
 			<div class="description"><?php echo nl2br($bkDescription); ?></div>
 			<div class="meta">
-				<?php echo $cats . $copy . $edit . $update;?>
+				<?php echo '<div>' . $copy . '</div><div>' . $cats . '</div><div>' . $edit . '</div><div>' . $update . '</div>'; ?>
 			</div>
 		</li>
 

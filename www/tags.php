@@ -46,7 +46,7 @@ $pagetitle = T_('Tags') .': ';
 for($i = 0; $i<count($titleTags);$i++) {
 	$pagetitle.= $titleTags[$i].'<a href="'.createUrl('tags', aggregateTags($titleTags, '+', $titleTags[$i])).'" title="'.T_('Remove the tag from the selection').'">*</a> + ';
 }
-$pagetitle = substr($pagetitle, 0, strlen($pagetitle) - strlen(' + ')); 
+$pagetitle = substr($pagetitle, 0, strlen($pagetitle) - strlen(' + '));
 
 
 //$cattitle = str_replace('+', ' + ', $cat);
@@ -106,7 +106,7 @@ $tplVars['page'] = $page;
 $tplVars['start'] = $start;
 $tplVars['popCount'] = 25;
 $tplVars['currenttag'] = $cat;
-$tplVars['sidebar_blocks'] = array('linked', 'related', 'menu2');//array('linked', 'related', 'popular');
+$tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 $tplVars['subtitlehtml'] = $pagetitle;
 $tplVars['bookmarkCount'] = $start + 1;
 $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, NULL, $cat, NULL, getSortOrder());

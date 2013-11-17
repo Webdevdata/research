@@ -9,7 +9,7 @@
 			<?php $this->includeTemplate('bookmarklet.inc.php'); ?>
 
 			<?php
-				echo $GLOBALS['footerMessage'] . ' <a href="' . createURL('about') . '">' . T_('About') . '</a> - ' . T_("Propulsed by ") . '<a rel="external" href="https://sourceforge.net/projects/semanticscuttle/">SemanticScuttle</a>';
+				echo 'Powered by <a rel="external" href="https://sourceforge.net/projects/semanticscuttle/">SemanticScuttle</a>';
 
 				// Licence to the thumbnails provider (OBLIGATORY IF YOU USE ARTVIPER SERVICE)
 				if ($GLOBALS['enableWebsiteThumbnails']) {

@@ -17,14 +17,13 @@
 	?>
 
 		<li><a href="<?php echo createURL(''); ?>"><?php echo T_('Home'); ?></a></li>
-		<li><a href="<?php echo createURL('bookmarks', $cUsername); ?>"><?php echo T_('Bookmarks'); ?></a></li>
-		<li><a href="<?php echo createURL('alltags', $cUsername); ?>"><?php echo T_('Tags'); ?></a></li>
-		<li><a href="<?php echo $userservice->getProfileUrl($cUserId, $cUsername); ?>"><?php echo T_('Profile'); ?></a></li>
-		<li><a href="<?php echo createURL('bookmarks', $cUsername . '?action=add'); ?>"><?php echo T_('Add a Bookmark'); ?></a></li>
-		<li class="access"><?php echo $cUsername?><a href="<?php echo ROOT ?>?action=logout">(<?php echo T_('Log Out'); ?>)</a></li>
 		<li><a href="<?php echo createURL('about'); ?>"><?php echo T_('About'); ?></a></li>
+		<li><a href="<?php echo createURL('bookmarks', $cUsername . '?action=add'); ?>"><?php echo T_('Add a Bookmark'); ?></a></li>
+		<li><a href="<?php echo createURL('bookmarks', $cUsername); ?>"><?php echo T_('My bookmarks'); ?></a></li>
+		<li><a href="<?php echo createURL('alltags', $cUsername); ?>"><?php echo T_('Tags'); ?></a></li>
+		<li><a href="<?php echo $userservice->getProfileUrl($cUserId, $cUsername); ?>"><?php echo $cUsername?></a> <a href="<?php echo ROOT ?>?action=logout">(<?php echo T_('Log Out'); ?>)</a></li>
 		<?php if($currentUser->isAdmin()) : ?>
-		<li><a href="<?php echo createURL('admin', ''); ?>"><?php echo '['.T_('Admin').']'; ?></a></li>
+		<li><a href="<?php echo createURL('admin', ''); ?>">Admin</a></li>
 		<?php endif; ?>
 
 	<?php
@@ -47,7 +46,7 @@
 
 	<form id="search" action="<?php echo createURL('search'); ?>" method="post">
 		<label for="search-terms">Search</label>
-		<input type="search" id="search-terms" name="terms" size="30" value="<?php echo filter($terms); ?>" />
+		<input type="search" id="search-terms" name="terms" value="<?php echo filter($terms); ?>" />
 
 		<label for="search-range">in</label>
 		<select id="search-range" name="range">
@@ -64,7 +63,6 @@
 			?>
 
 			<option value="<?php echo $currentUsername; ?>"><?php echo T_('My bookmarks'); ?></option>
-			<option value="watchlist"><?php echo T_('My watchlist'); ?></option>
 
 			<?php
 				}
