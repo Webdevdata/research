@@ -15,7 +15,8 @@ h1, h2, h3, h4, h5, h6 {
 body {
 	background-color: #ece4d8;
 
-	margin: 0;
+	max-width: 79em;
+	margin: 0 auto;
 	padding: 0;
 
 	color: #544943;
@@ -326,4 +327,45 @@ footer li:last-child {
 
 footer a {
 	color: #f1f1f1;
+}
+
+@media screen and (min-width: 40em) {
+	main {
+		float: left;
+
+		width: 66%;
+		width: -webkit-calc(66% - 2em);
+		width: calc(66% - 2em);
+		margin: 0;
+	}
+
+	aside.sidebar {
+		float: right;
+
+		width: 24%;
+		width: -webkit-calc(33% - 2em);
+		width: calc(33% - 2em);
+		margin: 1em 1em 0 0;
+	}
+
+	main, footer {
+		clear: both;
+	}
+}
+
+@media screen and (min-width: 57.5em) {
+	header {
+		position: relative;
+
+		height: 5.5em;
+
+		text-align: left;
+	}
+
+	nav {
+		position: absolute;
+		top: 1em;
+		right: 1em;
+		text-align: right;
+	}
 }
