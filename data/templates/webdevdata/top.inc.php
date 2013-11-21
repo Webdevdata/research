@@ -7,9 +7,9 @@
 
 		<title><?php echo filter($GLOBALS['sitename'] . (isset($pagetitle) ? ' » ' . $pagetitle : '')); ?></title>
 
-		<link rel="icon" type="image/png" href="<?php echo $theme->resource('icon.png'); ?>" />
+		<link rel="icon" type="image/png" href="/<?php echo $theme->resource('icon.png'); ?>" />
 
-		<link rel="stylesheet" type="text/css" href="<?php echo $theme->resource('webdevdata.css');?>" />
+		<link rel="stylesheet" type="text/css" href="/<?php echo $theme->resource('webdevdata.css');?>" />
 
 		<link rel="search" type="application/opensearchdescription+xml" href="<?php echo ROOT ?>api/opensearch.php" title="<?php echo htmlspecialchars($GLOBALS['sitename']) ?>" />
 
