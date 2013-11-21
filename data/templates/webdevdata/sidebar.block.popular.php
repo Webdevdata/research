@@ -18,7 +18,7 @@ $popularTags =& $b2tservice->tagCloud($popularTags, 5, 90, 225, 'alphabet_asc');
 	<h2>Popular tags</h2>
 	<ul class="tags">
 		<?php
-			$cat_url = createURL('tags', '%2$s');
+			$cat_url = createURL('/tags', '%2$s');
 			foreach ($popularTags as $row) {
 				$entries = T_ngettext('bookmark', 'bookmarks', $row['bCount']);
 				echo '<li style="font-size: ' . $row['size'] . '" class="popular-' . $row['size'] . '"><a href="'. sprintf($cat_url, $user, filter($row['tag'], 'url')) .'" title="'. $row['bCount'] .' '. $entries .'" rel="tag">'. filter($row['tag']) .'</a></li>';

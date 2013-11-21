@@ -5,9 +5,9 @@
 	<ol class="users">
 		<?php foreach($users as $user) { ?>
 			<li>
-				<a href="<?php echo createURL('profile', $user->getUsername()); ?>"><?php echo $user->getUsername(); ?></a>
+				<a href="<?php echo createURL('/profile', $user->getUsername()); ?>"><?php echo $user->getUsername(); ?></a>
 				<?php if ($user->getUsername() != $currentUser->getUsername()) { ?>
-				| <a href="<?php echo createURL('admin', 'delete/'.$user->getUsername()); ?>" onclick="javascript:return confirm('Are you sure?');">Delete</a>
+				| <a href="<?php echo createURL('/admin', 'delete/'.$user->getUsername()); ?>" onclick="javascript:return confirm('Are you sure?');">Delete</a>
 				<?php } ?>
 			</li>
 		<?php } ?>

@@ -101,9 +101,9 @@
 			if ($currenttag != '') {
 				echo '<div>';
 				if ($user != '') {
-					echo '<a href="' . createURL('tags', $currenttag) . '">Bookmarks from other users for this tag</a>';
+					echo '<a href="' . createURL('/tags', $currenttag) . '">Bookmarks from other users for this tag</a>';
 				} else if ($userservice->isLoggedOn()) {
-					echo '<a href="' . createURL('bookmarks', $currentUser->getUsername() . '/' . $currenttag) .'">Only your bookmarks for this tag</a>';
+					echo '<a href="' . createURL('/bookmarks', $currentUser->getUsername() . '/' . $currenttag) .'">Only your bookmarks for this tag</a>';
 				}
 				echo '</div>';
 			}
@@ -137,7 +137,7 @@
 			}
 
 			// Edit and delete links
-			$edit = '<ul><li><a href="' . createURL('edit', $row['bId']) . '">Edit</a></li><li><button type="button" onclick="deleteBookmark(this, '. $row['bId'] .'); return false;">Delete</button>';
+			$edit = '<ul><li><a href="' . createURL('/edit', $row['bId']) . '">Edit</a></li><li><button type="button" onclick="deleteBookmark(this, '. $row['bId'] .'); return false;">Delete</button>';
 
 			// Last update
 			$update = '<small>Last updated '. date($GLOBALS['shortdate'], strtotime($row['bModified'])). '</small>';
@@ -147,7 +147,7 @@
 			if ($userservice->isLoggedOn() && $currentUser->getUsername() == $row['username']) {
 				$copy .= 'you';
 			} else {
-				$copy .= '<a href="' . createURL('bookmarks', $row['username']) . '">' . SemanticScuttle_Model_UserArray::getName($row) . '</a>';
+				$copy .= '<a href="' . createURL('/bookmarks', $row['username']) . '">' . SemanticScuttle_Model_UserArray::getName($row) . '</a>';
 			}
 
 			// Nofollow option

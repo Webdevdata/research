@@ -14,7 +14,7 @@
 		<dd><?php echo date($GLOBALS['longdate'], strtotime($objectUser->getDatetime())); ?></dd>
 
 		<dt>Bookmarks</dt>
-		<dd><a href="<?php echo createURL('bookmarks', $user) ?>">Go to bookmarks</a></dd>
+		<dd><a href="<?php echo createURL('/bookmarks', $user) ?>">Go to bookmarks</a></dd>
 	</dl>
 </main>
 
