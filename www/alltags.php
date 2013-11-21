@@ -30,7 +30,7 @@ list($url, $user) = explode(
     isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/'
 );
 if (!$user) {
-	header('Location: '. createURL('populartags'));
+	header('Location: '. createURL('/populartags'));
 	exit;
 }
 
@@ -68,9 +68,9 @@ $tplVars['tags'] =& $b2tservice->tagCloud($tags, 5, 90, 225, getSortOrder());
 $tplVars['user'] = $user;
 
 if (isset($userid)) {
-	$tplVars['cat_url'] = createURL('bookmarks', '%s/%s');
+	$tplVars['cat_url'] = createURL('/bookmarks', '%s/%s');
 } else {
-	$tplVars['cat_url'] = createURL('tags', '%2$s');
+	$tplVars['cat_url'] = createURL('/tags', '%2$s');
 }
 
 $tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];

@@ -33,7 +33,7 @@
 	?>
 
 	<header role="banner" id="header" <?php echo $headerstyle; ?>>
-		<h1><a href="<?php echo ROOT ?>"><?php echo $GLOBALS['sitename']; ?></a></h1>
+		<h1><a href="/"><?php echo $GLOBALS['sitename']; ?></a></h1>
 		<?php
 			if(!isset($_GET['popup'])) {
 				$this->includeTemplate('toolbar.inc');

@@ -36,12 +36,12 @@ $tplVars['error'] = '';
 $tplVars['msg'] = '';
 
 if ( !$userservice->isLoggedOn() ) {
-	header('Location: '. createURL('login', ''));
+	header('Location: '. createURL('/login', ''));
 	exit();
 }
 
 if ( !$currentUser->isAdmin() ) {
-	header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
+	header('Location: '. createURL('/bookmarks', $currentUser->getUsername()));
 	exit();
 }
 

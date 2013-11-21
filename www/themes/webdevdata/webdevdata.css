@@ -345,7 +345,7 @@ footer a {
 		width: 24%;
 		width: -webkit-calc(33% - 2em);
 		width: calc(33% - 2em);
-		margin: 1em 1em 0 0;
+		margin: 1em 1em 1em 0;
 	}
 
 	main, footer {

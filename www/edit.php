@@ -84,7 +84,7 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
                     header('Location: '. POST_REFERRER);
                 } else {
                 	$tplVars['msg'] = T_('Bookmark saved');
-                    header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
+                    header('Location: '. createURL('/bookmarks', $currentUser->getUsername()));
                 }
             }
         }
@@ -97,7 +97,7 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
             	} elseif (POST_REFERRER != '') {
                     header('Location: '. POST_REFERRER);
                 } else {
-                    header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
+                    header('Location: '. createURL('/bookmarks', $currentUser->getUsername()));
                 }
             } else {
                 $tplVars['error'] = T_('Failed to delete bookmark');
@@ -109,7 +109,7 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
 
     $tplVars['popup'] = (GET_POPUP) ? GET_POPUP : null;
     $tplVars['row'] =& $row;
-    $tplVars['formaction']  = createURL('edit', $bookmark);
+    $tplVars['formaction']  = createURL('/edit', $bookmark);
     $tplVars['btnsubmit'] = T_('Save Changes');
     $tplVars['showdelete'] = true;
     $tplVars['referrer'] = '';

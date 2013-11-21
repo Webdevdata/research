@@ -85,7 +85,7 @@ if (POST_SUBMITTED != '') {
             // Log in with new username
             $login = $userservice->login($posteduser, POST_PASS);
             if ($login) {
-                header('Location: '. createURL('bookmarks', $posteduser));
+                header('Location: '. createURL('/bookmarks', $posteduser));
             }
             $tplVars['msg'] = T_('You have successfully registered. Enjoy!');
         } else {
@@ -97,7 +97,7 @@ if (POST_SUBMITTED != '') {
 $tplVars['antispamQuestion'] = $GLOBALS['antispamQuestion'];
 $tplVars['loadjs']      = true;
 $tplVars['subtitle']    = T_('Register');
-$tplVars['formaction']  = createURL('register');
+$tplVars['formaction']  = createURL('/register');
 $tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 $templateservice->loadTemplate('register.tpl', $tplVars);
 ?>

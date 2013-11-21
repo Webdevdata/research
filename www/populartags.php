@@ -65,9 +65,9 @@ $tplVars['tags'] =& $b2tservice->tagCloud($tags, 5, 90, 225, getSortOrder('alpha
 $tplVars['user'] = $user;
 
 if (isset($userid)) {
-	$tplVars['cat_url'] = createURL('bookmarks', '%s/%s');
+	$tplVars['cat_url'] = createURL('/bookmarks', '%s/%s');
 } else {
-	$tplVars['cat_url'] = createURL('tags', '%2$s');
+	$tplVars['cat_url'] = createURL('/tags', '%2$s');
 }
 
 $tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];

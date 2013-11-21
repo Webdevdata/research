@@ -176,7 +176,7 @@ if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
 
 	$templatename = 'editprofile.tpl.php';
 
-	$tplVars['formaction'] = createURL('profile', $user);
+	$tplVars['formaction'] = createURL('/profile', $user);
 	$tplVars['token']      = $_SESSION['token'];
 
 	$tplVars['sslClientCerts'] = $scert->getUserCerts($currentUser->getId());

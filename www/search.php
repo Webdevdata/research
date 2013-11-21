@@ -33,7 +33,7 @@ if (POST_TERMS != '') {
 	// Redirect to GET
 	header(
         'Location: '
-        . createURL('search', POST_RANGE .'/'. filter(POST_TERMS, 'url'))
+        . createURL('/search', POST_RANGE .'/'. filter(POST_TERMS, 'url'))
     );
     exit();
 
@@ -135,7 +135,7 @@ if (isset($_GET['lucky']) && $_GET['lucky']
 
 if ($GLOBALS['enableGoogleCustomSearch']) {
     $tplVars['tipMsg'] = T_('Unsatisfied? You can also try our ')
-        . '<a href="' . createUrl('gsearch/index') . '">Google Custom Search page</a>.';
+        . '<a href="' . createUrl('/gsearch/index') . '">Google Custom Search page</a>.';
 }
 $tplVars['rsschannels'] = array();
 $tplVars['page'] = $page;
@@ -148,8 +148,8 @@ $tplVars['pagetitle'] = T_('Search Bookmarks');
 $tplVars['bookmarkCount'] = $start + 1;
 $tplVars['total'] = $bookmarks['total'];
 $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
-$tplVars['cat_url'] = createURL('tags', '%2$s');
-$tplVars['nav_url'] = createURL('search', $range .'/'. $terms .'/%3$s');
+$tplVars['cat_url'] = createURL('/tags', '%2$s');
+$tplVars['nav_url'] = createURL('/search', $range .'/'. $terms .'/%3$s');
 
 $templateservice->loadTemplate('bookmarks.tpl', $tplVars);
 ?>

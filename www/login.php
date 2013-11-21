@@ -41,9 +41,9 @@ if (POST_SUBMITTED!='' && POST_USERNAME!='' && POST_PASSWORD!='') {
     $login = $userservice->login($posteduser, POST_PASSWORD, $keeppass);
     if ($login) {
         if (POST_QUERY)
-            header('Location: '. createURL('bookmarks', $posteduser .'?'. POST_QUERY));
+            header('Location: '. createURL('/bookmarks', $posteduser .'?'. POST_QUERY));
         else
-            header('Location: '. createURL('bookmarks', $posteduser));
+            header('Location: '. createURL('/bookmarks', $posteduser));
     } else {
         $tplVars['error'] = T_('The details you have entered are incorrect. Please try again.');
     }
@@ -51,11 +51,11 @@ if (POST_SUBMITTED!='' && POST_USERNAME!='' && POST_PASSWORD!='') {
 if (!$login) {
     if ($userservice->isLoggedOn()) {
         $cUser = $userservice->getCurrentObjectUser();
-        header('Location: '. createURL('bookmarks', strtolower($cUser->getUsername())));
+        header('Location: '. createURL('/bookmarks', strtolower($cUser->getUsername())));
     }
 
     $tplVars['subtitle']    = T_('Log In');
-    $tplVars['formaction']  = createURL('login');
+    $tplVars['formaction']  = createURL('/login');
     $tplVars['querystring'] = filter($_SERVER['QUERY_STRING']);
     $tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
     $templateservice->loadTemplate('login.tpl', $tplVars);

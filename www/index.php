@@ -44,7 +44,7 @@ $tplVars['loadjs'] = true;
 $tplVars['rsschannels'] = array(
     array(
         sprintf(T_('%s: Recent bookmarks'), $sitename),
-        createURL('rss') . '?sort=' . getSortOrder()
+        createURL('/rss') . '?sort=' . getSortOrder()
     )
 );
 
@@ -58,7 +58,7 @@ if ($userservice->isLoggedOn()) {
                     T_('%s: Recent bookmarks (+private %s)'),
                     $sitename, $currentUsername
                 ),
-                createURL('rss')
+                createURL('/rss')
                 . '?sort=' . getSortOrder()
                 . '&privateKey=' . $currentUser->getPrivateKey()
             )
@@ -101,8 +101,8 @@ $bookmarks = $bookmarkservice->getBookmarks($start, $perpage, NULL, NULL, NULL, 
 
 $tplVars['total'] = $bookmarks['total'];
 $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
-$tplVars['cat_url'] = createURL('bookmarks', '%1$s/%2$s');
-$tplVars['nav_url'] = createURL('index', '%3$s');
+$tplVars['cat_url'] = createURL('/bookmarks', '%1$s/%2$s');
+$tplVars['nav_url'] = createURL('/index', '%3$s');
 $tplVars['summarizeLinkedTags'] = true;
 $tplVars['pageName'] = PAGE_INDEX;
 $tplVars['user'] = '';

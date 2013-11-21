@@ -57,7 +57,7 @@ if (!isset($_POST['tags'])) {
 
 if ((GET_ACTION == "add") && !$userservice->isLoggedOn()) {
 	$loginqry = str_replace("'", '%27', stripslashes($_SERVER['QUERY_STRING']));
-	header('Location: '. createURL('login', '?'. $loginqry));
+	header('Location: '. createURL('/login', '?'. $loginqry));
 	exit();
 }
 
@@ -69,6 +69,11 @@ if ($userservice->isLoggedOn()) {
 
 
 @list($url, $user, $cat) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
+if (empty($url)) {
+	$fakePathInfo = substr($_SERVER['REQUEST_URI'], 1);
+	$fakePathInfo = explode('?', $fakePathInfo)[0];
+ 	@list($url, $user, $cat) = isset($_SERVER['REQUEST_URI']) ? explode('/', $fakePathInfo) : NULL;
+}
 
 
 $endcache = false;
@@ -111,7 +116,7 @@ if ($cat) {
 	$catTitleWithUrls = ': ';
 	$titleTags = explode('+', filter($cat));
 	for($i = 0; $i<count($titleTags);$i++) {
-		$catTitleWithUrls.= $titleTags[$i].'<a href="'.createUrl('bookmarks', $user.'/'.aggregateTags($titleTags, '+', $titleTags[$i])).'" title="'.T_('Remove the tag from the selection').'">*</a> + ';
+		$catTitleWithUrls.= $titleTags[$i].'<a href="'.createUrl('/bookmarks', $user.'/'.aggregateTags($titleTags, '+', $titleTags[$i])).'" title="'.T_('Remove the tag from the selection').'">*</a> + ';
 	}
 	$catTitleWithUrls = substr($catTitleWithUrls, 0, strlen($catTitleWithUrls) - strlen(' + '));
 
@@ -141,7 +146,7 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
         } else if ($bookmarkservice->bookmarkExists($address, $currentUserID)) {
             // If the bookmark exists already, edit the original
 			$bookmark = $bookmarkservice->getBookmarkByAddress($address);
-			header('Location: '. createURL('edit', $bookmark['bId']));
+			header('Location: '. createURL('/edit', $bookmark['bId']));
 			exit();
 			// If it's new, save it
 		} else {
@@ -175,7 +180,7 @@ if (GET_ACTION == "add") {
 	if ($bookmarkservice->bookmarkExists(stripslashes(GET_ADDRESS), $currentUserID)) {
 		$bookmark =& $bookmarkservice->getBookmarks(0, NULL, $currentUserID, NULL, NULL, NULL, NULL, NULL, NULL, $bookmarkservice->getHash(stripslashes(GET_ADDRESS)));
 		$popup = (GET_POPUP!='') ? '?popup=1' : '';
-		header('Location: '. createURL('edit', $bookmark['bookmarks'][0]['bId'] . $popup));
+		header('Location: '. createURL('/edit', $bookmark['bookmarks'][0]['bId'] . $popup));
 		exit();
 	}
 	$templatename = 'editbookmark.tpl';
@@ -183,7 +188,7 @@ if (GET_ACTION == "add") {
 
 if ($templatename == 'editbookmark.tpl') {
 	if ($userservice->isLoggedOn()) {
-		$tplVars['formaction']  = createURL('bookmarks', $currentUsername);
+		$tplVars['formaction']  = createURL('/bookmarks', $currentUsername);
 		if (POST_SUBMITTED != '') {
 			$tplVars['row'] = array(
                 'bTitle' => stripslashes(POST_TITLE),
@@ -256,7 +261,7 @@ if ($templatename == 'editbookmark.tpl') {
 	$tplVars['rsschannels'] = array(
         array(
             sprintf(T_('%s: %s'), $sitename, $rssTitle),
-            createURL('rss', filter($user, 'url'))
+            createURL('/rss', filter($user, 'url'))
             . $rssCat . '?sort='.getSortOrder()
         )
 	);
@@ -271,7 +276,7 @@ if ($templatename == 'editbookmark.tpl') {
                         T_('%s: %s (+private %s)'),
                         $sitename, $rssTitle, $currentUsername
                     ),
-                    createURL('rss', filter($currentUsername, 'url'))
+                    createURL('/rss', filter($currentUsername, 'url'))
                     . $rssCat
                     . '?sort=' . getSortOrder()
                     . '&privateKey=' . $currentUser->getPrivateKey()
@@ -287,8 +292,8 @@ if ($templatename == 'editbookmark.tpl') {
 	$bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $userid, $cat, null, getSortOrder());
 	$tplVars['total'] = $bookmarks['total'];
 	$tplVars['bookmarks'] =& $bookmarks['bookmarks'];
-	$tplVars['cat_url'] = createURL('bookmarks', '%s/%s');
-	$tplVars['nav_url'] = createURL('bookmarks', '%s/%s%s');
+	$tplVars['cat_url'] = createURL('/bookmarks', '%s/%s');
+	$tplVars['nav_url'] = createURL('/bookmarks', '%s/%s%s');
 	if ($userservice->isLoggedOn() && $user == $currentUsername) {
 		$tplVars['pagetitle'] = T_('My Bookmarks') . $catTitle;
 		$tplVars['subtitlehtml'] =  T_('My Bookmarks') . $catTitleWithUrls;

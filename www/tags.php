@@ -37,14 +37,14 @@ list($url, $cat) = explode('/', $_SERVER['PATH_INFO']);
 
 
 if (!$cat) {
-	header('Location: '. createURL('populartags'));
+	header('Location: '. createURL('/populartags'));
 	exit;
 }
 
 $titleTags = explode('+', filter($cat));
 $pagetitle = T_('Tags') .': ';
 for($i = 0; $i<count($titleTags);$i++) {
-	$pagetitle.= $titleTags[$i].'<a href="'.createUrl('tags', aggregateTags($titleTags, '+', $titleTags[$i])).'" title="'.T_('Remove the tag from the selection').'">*</a> + ';
+	$pagetitle.= $titleTags[$i].'<a href="'.createUrl('/tags', aggregateTags($titleTags, '+', $titleTags[$i])).'" title="'.T_('Remove the tag from the selection').'">*</a> + ';
 }
 $pagetitle = substr($pagetitle, 0, strlen($pagetitle) - strlen(' + '));
 
@@ -69,7 +69,7 @@ $tplVars['loadjs'] = true;
 $tplVars['rsschannels'] = array(
     array(
         sprintf(T_('%s: tagged with "%s"'), $sitename, $cat),
-        createURL('rss', 'all/' . filter($cat, 'url'))
+        createURL('/rss', 'all/' . filter($cat, 'url'))
         . '?sort='.getSortOrder()
     )
 );
@@ -84,7 +84,7 @@ if ($userservice->isLoggedOn()) {
                     T_('%s: tagged with "%s" (+private %s)'),
                     $sitename, $cat, $currentUsername
                 ),
-                createURL('rss', filter($currentUsername, 'url'))
+                createURL('/rss', filter($currentUsername, 'url'))
                 . '?sort=' . getSortOrder()
                 . '&privateKey=' . $currentUser->getPrivateKey()
             )
@@ -112,8 +112,8 @@ $tplVars['bookmarkCount'] = $start + 1;
 $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, NULL, $cat, NULL, getSortOrder());
 $tplVars['total'] = $bookmarks['total'];
 $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
-$tplVars['cat_url'] = createURL('bookmarks', '%1$s/%2$s');
-$tplVars['nav_url'] = createURL('tags', '%2$s%3$s');
+$tplVars['cat_url'] = createURL('/bookmarks', '%1$s/%2$s');
+$tplVars['nav_url'] = createURL('/tags', '%2$s%3$s');
 
 $templateservice->loadTemplate('bookmarks.tpl', $tplVars);
 

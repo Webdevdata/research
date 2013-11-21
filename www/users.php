@@ -50,8 +50,8 @@ $tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 $tplVars['subtitle'] = filter($pagetitle);
 
 $tplVars['users'] =& $userservice->getUsers();
-//$tplVars['cat_url'] = createURL('tags', '%2$s');
-//$tplVars['nav_url'] = createURL('tags', '%2$s%3$s');
+//$tplVars['cat_url'] = createURL('/tags', '%2$s');
+//$tplVars['nav_url'] = createURL('/tags', '%2$s%3$s');
 
 $templateservice->loadTemplate('users.tpl', $tplVars);
 

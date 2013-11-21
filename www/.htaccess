@@ -9,8 +9,7 @@
 Options +FollowSymlinks
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^([^/.]+)/?(.*)$ /$1.php/$2 [QSA,L]
-RewriteRule ^api/([a-z]+)/([a-z]+) /api/$1_$2.php
+RewriteRule ^([^/]+)/?(.*) $1.php?query=$2 [L,QSA]
 </IfModule>
 
 
